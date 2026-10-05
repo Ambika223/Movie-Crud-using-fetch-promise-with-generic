@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie CRUD using fetch promise with generic</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+        integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-6">
+                <a href="index.html" class="logo">
+                    <img src="https://www.svgrepo.com/show/303196/netflix-2-logo.svg" alt="Netflix Logo">
+                </a>
+            </div>
+            <div class="col-6 align-self-center text-right">
+                <button class="btn btn-sm net-pri-btn" id="showMovieBtn">Add Movie</button>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row" id="MovieContainer">
+            <!-- <div class="col-md-3">
+                <div class="card movieCard">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-10">
+                                <h3 class="headTitle">Skanda</h3>
+                                <div><small class="createAt">ytre3234</small></div>
+                                <div><small class="updatedAt d-none">76543wer</small></div>
+                            </div>
+                            <div class="col-2">
+                                <h4 class="m-0"><span class="badge badge-warning">5</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body py-0">
+                        <figure>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTc0Lo5pGFhEcsiA2fVzEuzjSwOnfy9QHtJGiHmXraVUjmpSCP9dej43s&s=10"
+                                alt="skanda Img">
+                            <figcaption>
+                                <h4>Skanda Movie</h4>
+                                <p>Skanda (also known as Skanda: The Attacker) is a 2023 Telugu-language action-drama
+                                    film directed by Boyapati Srinu and starring Ram Pothineni, Sreeleela, and Saiee
+                                    Manjrekar</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-sm net-sec-btn">Edit</button>
+                        <button type="button" class="btn btn-sm net-pri-btn">Remove</button>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="backDrop" id="backDrop"></div>
+    <div class="movieModal" id="movieModal">
+        <form id="movieForm">
+            <div class="card bg-info">
+                <div class="card-header d-flex justify-content-between">
+                    <h4>Add Movie</h4>
+                    <i role="button" class="fa-solid fa-xmark fa-2x" id="closeIcon"></i>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="movieTitle">Movie Title</label>
+                                <input type="text" id="movieTitle" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="movieImg">Movie Image</label>
+                                <input type="text" id="movieImg" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="createdAt">Created At</label>
+                                <input type="datetime-local" class="form-control" id="createdAt">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="updatedAt">Updated At</label>
+                                <input type="datetime-local" class="form-control" id="updatedAt">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="movieDescription">Movie Description</label>
+                                <textarea id="movieDescription" class="form-control mr-3"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="movieRating">Movie Rating</label>
+                                <select name="" id="movieRating" class="form-control">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" id="date" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="genre">Genre</label>
+                                <input type="text" id="genre" class="form-control">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer d-flex justify-content-between">
+                    <button type="submit" id="submitMovieBtn" class="btn btn-sm net-sec-btn">Add Movie</button>
+                    <button type="button" id="updateMovieBtn" class="btn btn-sm net-sec-btn d-none">Update
+                        Movie</button>
+                    <button type="button" id="closeBtn" class="btn btn-sm net-pri-btn">Close</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="spinner d-none" id="spinner">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./assets/js/app.js"></script>
+</body>
+
+</html>
