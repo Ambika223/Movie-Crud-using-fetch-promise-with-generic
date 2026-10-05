@@ -246,7 +246,7 @@ function updateMovie() {
     showUpdatedSmallElement(UPDATE_ID);
     let UPDATE_URL = `${base_url}/movies/${UPDATE_ID}.json`;
     let UPDATED_OBJ = {
-        movietitle: movieTitle.value,
+        movieTitle: movieTitle.value,
         movieImg: movieImg.value,
         createdAt: createdAt.value,
         updatedAt: updatedAt.value,
@@ -268,22 +268,22 @@ function updateMovie() {
                     <div class="card-header">
                         <div class="row">
                             <div class="col-10">
-                                <h3 class="headTitle">${movie.movieTitle}</h3>
-                                <div><small class="createAt">Created At:${movie.createdAt}</small></div>
-                                <div><small class="updatedAt d-none">Updated At:${movie.updatedAt}</small></div>
+                                <h3 class="headTitle">${UPDATED_OBJ.movieTitle}</h3>
+                                <div><small class="createAt">Created At:${UPDATED_OBJ.createdAt}</small></div>
+                                <div><small class="updatedAt d-none">Updated At:${UPDATED_OBJ.updatedAt}</small></div>
                             </div>
                             <div class="col-2">
-                                <h4 class="m-0"><span class="badge${setRating(movie.movieRating)}">${movie.movieRating}</span></h4>
+                                <h4 class="m-0"><span class="badge${setRating(UPDATED_OBJ.movieRating)}">${UPDATED_OBJ.movieRating}</span></h4>
                             </div>
                         </div>
                     </div>
                     <div class="card-body py-0">
                         <figure>
-                            <img src="${movie.movieImg}"
-                                alt="${movie.movieTitle}">
+                            <img src="${UPDATED_OBJ.movieImg}"
+                                alt="${UPDATED_OBJ.movieTitle}">
                             <figcaption>
-                                <h4>${movie.movieTitle}</h4>
-                                <p>${movie.movieDescription}</p>
+                                <h4>${UPDATED_OBJ.movieTitle}</h4>
+                                <p>${UPDATED_OBJ.movieDescription}</p>
                             </figcaption>
                         </figure>
                     </div>
@@ -295,6 +295,7 @@ function updateMovie() {
             snackBar("Movie updated successfully!", "success");
             showUpdatedSmallElement(UPDATE_ID);
             toggleFormBackdrop();
+
         })
         .catch(err => {
             snackBar('error');
