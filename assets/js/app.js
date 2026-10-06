@@ -117,7 +117,7 @@ function renderingMovie(arr) {
     let res = ``;
     arr.forEach(movies => {
         res += `
-        <div class='col-md-3' id="${movies.id}">
+        <div class='col-md-3 mb-5' id="${movies.id}">
          <div class="card movieCard">
                     <div class="card-header">
                         <div class="row">
@@ -186,7 +186,7 @@ function onMovieAdd(eve) {
 function createMovieCard(movie) {
     let div = document.createElement("div");
     div.id = movie.id;
-    div.className = "col-md-3"
+    div.className = "col-md-3 mb-5"
     div.innerHTML = `
       <div class="card movieCard">
                     <div class="card-header">
